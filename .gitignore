@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# Streamlit
+.streamlit/config.toml
+
+# Virtualenvs
+venv/
+env/
+ENV/
+.venv/
+
+# VSCode
+.vscode/
+
+# Jupyter (falls verwendet)
+.ipynb_checkpoints/
+
+# Secrets
+.env
+*.env
+
+# OS generated
+Thumbs.db
+Desktop.ini
+
+# extra
+graphrag_query.ipynb
+indexing.md
+/graphrag/logs
+/graphrag/cache
