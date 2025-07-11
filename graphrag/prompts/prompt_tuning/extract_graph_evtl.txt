@@ -1,0 +1,180 @@
+
+-Goal-
+Given a text document that is potentially relevant to this activity, first identify all entities needed from the text in order to capture the information and ideas in the text.
+Next, report all relationships among the identified entities.
+
+-Steps-
+1. Identify all entities. For each identified entity, extract the following information:
+- entity_name: Name of the entity, capitalized
+- entity_type: Suggest several labels or categories for the entity. The categories should not be specific, but should be as general as possible.
+- entity_description: Comprehensive description of the entity's attributes and activities
+Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+
+2. From the entities identified in step 1, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
+For each pair of related entities, extract the following information:
+- source_entity: name of the source entity, as identified in step 1
+- target_entity: name of the target entity, as identified in step 1
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_strength: a numeric score indicating strength of the relationship between the source entity and target entity
+Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Return output in German as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
+
+4. If you have to translate into German, just translate the descriptions, nothing else!
+
+5. When finished, output {completion_delimiter}.
+
+-Examples-
+######################
+
+Example 1:
+
+text:
+Type: Song.
+Artist: Money Boy.
+Year: 2013.
+Album: Trap Haus.
+Title: Ballen ohne Ball
+
+[Hook]
+Wir ballen ohne Ball, ballen mit dem Benz
+Ballen mit dem Geld, holen uns nen Benz
+Copen uns nen Maybach, solang es sie noch gibt
+Denn es werden keine Maybachs auf der Welt mehr produziert
+Wir ballen ohne Ball, ballen mit dem Benz
+Ballen mit dem Geld, holen uns nen Benz
+Kaufen uns nen Maybach, solang es sie noch gibt
+Denn es werden keine Maybachs auf der Welt mehr produziert
+Wir ballen ohne Ball, ballen mit dem Benz
+Ballen mit dem Geld, holen uns nen Benz
+Kaufen uns nen Maybach, solang es sie noch gibt
+Denn es werden keine Maybachs auf der Welt mehr produziert
+
+[Part]
+Verdammt wir ballen so hart
+Wir ballen fast jeden Tag
+Doch wir ballen nicht in der Halle
+Und wir ballen nicht im Park
+Wir ballen nicht auf Fußballfeldern
+Wir ballen in Malls
+Ballen in Private Jets
+Wir Ballen wie von Spalding die Balls
+Ich bin am ballen ohne Ball, was bedeutet denn ballen?
+Ballen bedeutet in die Mall zu gehen und sich was zu holen
+Ich red von Uhren und Ketten
+Ich ficke Huren in Betten
+Ich habe Sizzurp, Koks und Weed
+Jetzt brauch ich nur noch Tabletten
+Ich bin so fly wie ein Kapitän
+Von dieser Lufthansaflotte
+Gottverdammt ich bin so fly
+Wie in der Luft eine Motte
+Und obendrein so Fresh als hätte man mich Vakuumverpackt
+Und so stark du denkst ich wäre mit dem Spartakus verwandt
+[Hook]
+Wir ballen ohne Ball, ballen mit dem Benz
+Ballen mit dem Geld, holen uns nen Benz
+Kaufen uns nen Maybach, solang es sie noch gibt
+Denn es werden keine Maybachs auf der Welt mehr produziert
+Wir ballen ohne Ball, ballen mit dem Benz
+Ballen mit dem Geld, holen uns nen Benz
+Kaufen uns nen Maybach, solang es sie noch gibt
+Denn es werden keine Maybachs auf der Welt mehr produziert
+------------------------
+output:
+("entity"{tuple_delimiter}MONEY BOY{tuple_delimiter}PERSON, KÜNSTLER{tuple_delimiter}Money Boy ist ein deutscher Rapper, der für seine Beiträge zur Trap-Musikszene bekannt ist. Er veröffentlichte 2013 den Song "Ballen" auf dem Album "Trap Haus".)
+{record_delimiter}
+("entity"{tuple_delimiter}BALLEN{tuple_delimiter}SONG, MUSIKSTÜCK{tuple_delimiter}"Ballen" ist ein Song von Money Boy aus dem Jahr 2013, der auf dem Album "Trap Haus" veröffentlicht wurde. Der Song thematisiert den Lebensstil des "Ballens", der sich auf luxuriösen Konsum und Statussymbole bezieht.)
+{record_delimiter}
+("entity"{tuple_delimiter}TRAP HAUS{tuple_delimiter}ALBUM, MUSIKALBUM{tuple_delimiter}"Trap Haus" ist ein Album von Money Boy, das 2013 veröffentlicht wurde und den Song "Ballen" enthält.)
+{record_delimiter}
+("entity"{tuple_delimiter}BENZ{tuple_delimiter}AUTOMARKE, STATUSSYMBOL{tuple_delimiter}Der Benz wird im Song "Ballen" als Symbol für Reichtum und Erfolg erwähnt.)
+{record_delimiter}
+("entity"{tuple_delimiter}MAYBACH{tuple_delimiter}AUTOMARKE, STATUSSYMBOL{tuple_delimiter}Maybach wird im Song "Ballen" als ein weiteres Symbol für Luxus und Wohlstand erwähnt, wobei darauf hingewiesen wird, dass sie nicht mehr produziert werden.)
+{record_delimiter}
+("entity"{tuple_delimiter}SPALDING{tuple_delimiter}MARKENNAME, SPORTAUSRÜSTUNG{tuple_delimiter}Spalding ist eine Marke, die für ihre Basketballprodukte bekannt ist. Im Song wird sie als Metapher für das "Ballen" verwendet, obwohl es sich nicht um Sport handelt.)
+{record_delimiter}
+("relationship"{tuple_delimiter}MONEY BOY{tuple_delimiter}BALLEN{tuple_delimiter}Money Boy ist der Künstler, der den Song "Ballen" geschrieben und performt hat{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}BALLEN{tuple_delimiter}TRAP HAUS{tuple_delimiter}Der Song "Ballen" ist Teil des Albums "Trap Haus"{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}BENZ{tuple_delimiter}BALLEN{tuple_delimiter}Der Benz wird im Song "Ballen" als Symbol für Reichtum und Erfolg erwähnt{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}MAYBACH{tuple_delimiter}BALLEN{tuple_delimiter}Maybach wird im Song "Ballen" als Symbol für Luxus und Wohlstand erwähnt{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}SPALDING{tuple_delimiter}BALLEN{tuple_delimiter}Spalding wird im Song "Ballen" als Metapher für das "Ballen" verwendet{tuple_delimiter}6)
+{completion_delimiter}
+#############################
+
+
+Example 2:
+
+text:
+Type: Song.
+Artist: Money Boy.
+Year: 2010.
+Album: Swagger Rap.
+[Intro]
+Schönen guten Morgen
+Erstmal den Swagger aufdrehen
+Es ist Money Boy, Money Boy
+Ihr hört mein Mixtape, Swagger Rap
+Yeah, yeah, ah
+Lehnt euch zurück
+[?] euch ein Glas
+Grey Goose, ein, ein Glas Belvedere
+
+[Part]
+Cîroc oder irgend ein anderen feinen Vodka
+Oder Jack Daniels (Money Boy)
+Was ihr immer gerade Zuhause habt (Swagger Rap)
+Und ein paar Eiswürfel ins Glas (Swag)
+Hört euch meine Tracks an
+Money Boy, was ihr hört, ist Swagger Rap
+Yeah, yeah, ah
+Money Boy, Money Boy
+Die Ladys lieben mich (hehe)
+Und die Jungs wollen so sein, wie ich (hehe)
+Aber es gelinkt ihnen nicht (ah, ah, hehe)
+Yeah, ah, Money, Money, Money
+Ich spritz' euch gerade mit mein'm Swagger an (no Homo)
+In a hole lot a swag
+Swagger Rap, Money Boy, 21 (ah, ah)
+Che, Swag (brru)
+------------------------
+output:
+("entity"{tuple_delimiter}MONEY BOY{tuple_delimiter}PERSON, ARTIST{tuple_delimiter}Money Boy ist ein Künstler, der 2010 den Song "Swagger Rap" veröffentlicht hat)
+{record_delimiter}
+("entity"{tuple_delimiter}SWAGGER RAP{tuple_delimiter}SONG, ALBUM{tuple_delimiter}"Swagger Rap" ist ein Song und ein Mixtape-Album von Money Boy, veröffentlicht im Jahr 2010)
+{record_delimiter}
+("entity"{tuple_delimiter}GREY GOOSE{tuple_delimiter}BRAND, BEVERAGE{tuple_delimiter}Grey Goose ist eine Marke für Wodka, die im Song erwähnt wird)
+{record_delimiter}
+("entity"{tuple_delimiter}BELVEDERE{tuple_delimiter}BRAND, BEVERAGE{tuple_delimiter}Belvedere ist eine weitere Wodka-Marke, die im Song erwähnt wird)
+{record_delimiter}
+("entity"{tuple_delimiter}CÎROC{tuple_delimiter}BRAND, BEVERAGE{tuple_delimiter}Cîroc ist eine Wodka-Marke, die im Song erwähnt wird)
+{record_delimiter}
+("entity"{tuple_delimiter}JACK DANIELS{tuple_delimiter}BRAND, BEVERAGE{tuple_delimiter}Jack Daniels ist eine Whiskey-Marke, die im Song erwähnt wird)
+{record_delimiter}
+("relationship"{tuple_delimiter}MONEY BOY{tuple_delimiter}SWAGGER RAP{tuple_delimiter}Money Boy ist der Künstler des Songs und Albums "Swagger Rap"{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}GREY GOOSE{tuple_delimiter}MONEY BOY{tuple_delimiter}Grey Goose wird im Song von Money Boy erwähnt{tuple_delimiter}5)
+{record_delimiter}
+("relationship"{tuple_delimiter}BELVEDERE{tuple_delimiter}MONEY BOY{tuple_delimiter}Belvedere wird im Song von Money Boy erwähnt{tuple_delimiter}5)
+{record_delimiter}
+("relationship"{tuple_delimiter}CÎROC{tuple_delimiter}MONEY BOY{tuple_delimiter}Cîroc wird im Song von Money Boy erwähnt{tuple_delimiter}5)
+{record_delimiter}
+("relationship"{tuple_delimiter}JACK DANIELS{tuple_delimiter}MONEY BOY{tuple_delimiter}Jack Daniels wird im Song von Money Boy erwähnt{tuple_delimiter}5)
+{completion_delimiter}
+#############################
+
+
+
+#############################
+
+
+
+-Real Data-
+######################
+text: {input_text}
+######################
+output:

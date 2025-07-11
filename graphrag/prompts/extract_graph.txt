@@ -1,121 +1,379 @@
 
 -Goal-
-Given a text document that either a songtext, an interview or a wikipedia article and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities.
- 
+Given a text document that is potentially relevant to this activity, first identify all entities needed from the text in order to capture the information and ideas in the text.
+Next, report all relationships among the identified entities.
+
 -Steps-
 1. Identify all entities. For each identified entity, extract the following information:
 - entity_name: Name of the entity, capitalized
-- entity_type: One of the following types: [{entity_types}]
+- entity_type: Suggest several labels or categories for the entity. The categories should not be specific, but should be as general as possible.
 - entity_description: Comprehensive description of the entity's attributes and activities
 Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
- 
+
 2. From the entities identified in step 1, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
 For each pair of related entities, extract the following information:
 - source_entity: name of the source entity, as identified in step 1
 - target_entity: name of the target entity, as identified in step 1
 - relationship_description: explanation as to why you think the source entity and the target entity are related to each other
 - relationship_strength: a numeric score indicating strength of the relationship between the source entity and target entity
- Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
- 
-3. Return output in English as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
- 
-4. When finished, output {completion_delimiter}
- 
-######################
+Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Return output in German as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
+
+4. If you have to translate into German, just translate the descriptions, nothing else!
+
+5. When finished, output {completion_delimiter}.
+
 -Examples-
 ######################
+
 Example 1:
-Entity_types: ORGANIZATION,PERSON
-Text:
-The Verdantis's Central Institution is scheduled to meet on Monday and Thursday, with the institution planning to release its latest policy decision on Thursday at 1:30 p.m. PDT, followed by a press conference where Central Institution Chair Martin Smith will take questions. Investors expect the Market Strategy Committee to hold its benchmark interest rate steady in a range of 3.5%-3.75%.
-######################
-Output:
-("entity"{tuple_delimiter}CENTRAL INSTITUTION{tuple_delimiter}ORGANIZATION{tuple_delimiter}The Central Institution is the Federal Reserve of Verdantis, which is setting interest rates on Monday and Thursday)
+
+text:
+Type: Song.
+Year: 2021.
+Titel: NO FRONT by Haiyti & Sly Alone  .
+Album: SPEED DATE.
+Artist: Haiyti.
+
+[Hook: Sly Alone & Haiyti]
+Baby, no front (Eyy)
+Ich brauch' diese Vibes, der DJ spielt „Alors on danse“ (Ey)
+Vielleicht geh' ich zu weit, doch will nicht raus aus dieser Trance (Hey)
+Weißt du, was ich mein'? Ich war in Love, doch jetzt bin ich verlor'n (Eh)
+Baby, no front (Ey)
+Ba-Ba-Baby, no front
+Ich brauch' diese Vibes, der DJ spielt „Alors on danse“ (Alors on danse)
+Vielleicht geh' ich zu weit, doch ich will nicht aus dieser Trance (Ey)
+Weißt du, was ich mein'? Eben war ich in Love, doch jetzt bin ich verlor'n (Ey)
+Baby, no front (Ey), ja
+
+[Part 1: Haiyti]
+Sad Boy, sei nicht traurig
+Sad Boy, sei nicht traurig (Sad Boy, Sad Boy, Sad Boy)
+Bitte wein nicht für mich
+Ich bin froh, dass ich drauf bin (High)
+Havanna, uh-la-la, vergesse, was du sagst
+War dem Ende schon so nah
+Doch ich dreh' nochmal am Rad, es sind 180 Grad
+Ich glaub', Wunder werden wahr
+
+[Pre-Hook: Haiyiti & Sly Alone]
+Siehst du mich torkeln? (Torkeln)
+Jetzt spiel' ich wieder verrückt, nein, ich komm' nicht klar
+Bitte kann mich jemand orten?
+Ich bin hier allein mit dem Glas in meiner Hand
+Si-si-siehst du mich torkeln? (Torkeln)
+Jetzt spiel' ich wieder verrückt, nein, ich komm' nicht klar
+Kann mich bitte jemand orten?
+Setze meine Träume grade alle in den Sand
+
+
+[Hook: Sly Alone & Haiyti]
+Baby, no front (Eyy)
+Ich brauch' diese Vibes, der DJ spielt „Alors on danse“ (Ey)
+Vielleicht geh' ich zu weit, doch will nicht raus aus dieser Trance (Hey)
+Weißt du, was ich mein'? Ich war in Love, doch jetzt bin ich verlor'n (Eh)
+Baby, no front (Ey)
+Ba-Ba-Baby, no front
+Ich brauch' diese Vibes, der DJ spielt „Alors on danse“ (Alors on danse)
+Vielleicht geh' ich zu weit, doch ich will nicht aus dieser Trance (Ey)
+Weißt du, was ich mein'? Eben war ich in Love, doch jetzt bin ich verlor'n (Ey)
+Baby, no front (Ey)
+
+[Part 2: Sly Alone & Haiyti]
+Alles dreht sich wie im Kreis
+Gib mir noch mehr von diesem Coke-Gas, weil ich bin nicht mehr high
+Betäube Sinne wegen Schmerz in meiner Brust
+Nach einer Weile fühlt sich an, als wär es besser wir beide bleiben allein
+Ich kippe den Henny in mein'n Becher gegen Pain
+Denn nur jetzt kann ich die Zweifel in ihr seh'n (Ey)
+Diese Teardrops fallen in mein'n Drink, ey
+Bin so drunk, kann nicht sagen, wo das hinführt
+
+[Pre-Hook: Haiyiti & Sly Alone]
+Siehst du mich torkeln? (Torkeln)
+Jetzt spiel' ich wieder verrückt, nein, ich komm' nicht klar
+Bitte kann mich jemand orten?
+Ich bin hier allein mit dem Glas in meiner Hand
+Si-si-siehst du mich torkeln? (Torkeln)
+Jetzt spiel' ich wieder verrückt, nein, ich komm' nicht klar
+Kann mich bitte jemand orten?
+Setze meine Träume grade alle in den Sand
+
+[Hook: Sly Alone & Haiyti]
+Baby, no front (Eyy)
+Ich brauch' diese Vibes, der DJ spielt „Alors on danse“ (Ey)
+Vielleicht geh' ich zu weit, doch will nicht raus aus dieser Trance (Hey)
+Weißt du, was ich mein'? Ich war in Love, doch jetzt bin ich verlor'n (Eh)
+Baby, no front (Ey)
+Ba-Ba-Baby, no front
+Ich brauch' diese Vibes, der DJ spielt „Alors on danse“ (Alors on danse)
+Vielleicht geh' ich zu weit, doch ich will nicht aus dieser Trance (Ey)
+Weißt du, was ich mein'? Eben war ich in Love, doch jetzt bin ich verlor'n (Ey)
+Baby, no front (Ey)
+------------------------
+output:
+("entity"{tuple_delimiter}NO FRONT{tuple_delimiter}SONG{tuple_delimiter}Ein Song von Haiyti und Sly Alone aus dem Jahr 2021, der auf dem Album SPEED DATE veröffentlicht wurde)
 {record_delimiter}
-("entity"{tuple_delimiter}MARTIN SMITH{tuple_delimiter}PERSON{tuple_delimiter}Martin Smith is the chair of the Central Institution)
+("entity"{tuple_delimiter}HAIYTI{tuple_delimiter}ARTIST{tuple_delimiter}Eine Künstlerin, die den Song NO FRONT zusammen mit Sly Alone performt)
 {record_delimiter}
-("entity"{tuple_delimiter}MARKET STRATEGY COMMITTEE{tuple_delimiter}ORGANIZATION{tuple_delimiter}The Central Institution committee makes key decisions about interest rates and the growth of Verdantis's money supply)
+("entity"{tuple_delimiter}SLY ALONE{tuple_delimiter}ARTIST{tuple_delimiter}Ein Künstler, der den Song NO FRONT zusammen mit Haiyti performt)
 {record_delimiter}
-("relationship"{tuple_delimiter}MARTIN SMITH{tuple_delimiter}CENTRAL INSTITUTION{tuple_delimiter}Martin Smith is the Chair of the Central Institution and will answer questions at a press conference{tuple_delimiter}9)
+("entity"{tuple_delimiter}SPEED DATE{tuple_delimiter}ALBUM{tuple_delimiter}Das Album, auf dem der Song NO FRONT von Haiyti und Sly Alone veröffentlicht wurde)
+{record_delimiter}
+("entity"{tuple_delimiter}ALORS ON DANSE{tuple_delimiter}SONG{tuple_delimiter}Ein Song, der im Text von NO FRONT erwähnt wird und vom DJ gespielt wird)
+{record_delimiter}
+(“entity”{tuple_delimiter}TRANCE{tuple_delimiter}ZUSTAND{tuple_delimiter}Ein mentaler Zustand, in dem sich die Protagonistinnen des Songs befinden und aus dem sie nicht entkommen wollen)
+{record_delimiter}
+(“entity”{tuple_delimiter}VIBES{tuple_delimiter}GEFÜHLSZUSTAND{tuple_delimiter}Ein Gefühl oder eine Atmosphäre, die durch Musik erzeugt wird und von den Künstlerinnen im Song gesucht wird)
+{record_delimiter}
+(“entity”{tuple_delimiter}GLAS IN DER HAND{tuple_delimiter}SYMBOL{tuple_delimiter}Ein wiederkehrendes Bild im Song, das Einsamkeit und Kontrollverlust symbolisiert)
+{record_delimiter}
+(“entity”{tuple_delimiter}TORKELN{tuple_delimiter}ZUSTAND{tuple_delimiter}Ein Zustand körperlicher und emotionaler Instabilität, der im Song mehrfach erwähnt wird)
+{record_delimiter}
+(“entity”{tuple_delimiter}TEARDROPS{tuple_delimiter}SYMBOL{tuple_delimiter}Ein Symbol für emotionalen Schmerz und Traurigkeit, das im Song konkret im Zusammenhang mit einem Drink auftaucht)
+{record_delimiter}
+("relationship"{tuple_delimiter}NO FRONT{tuple_delimiter}HAIYTI{tuple_delimiter}Haiyti ist eine der Künstlerinnen, die den Song NO FRONT performt{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}NO FRONT{tuple_delimiter}SLY ALONE{tuple_delimiter}Sly Alone ist einer der Künstler, die den Song NO FRONT performt{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}NO FRONT{tuple_delimiter}SPEED DATE{tuple_delimiter}Der Song NO FRONT ist auf dem Album SPEED DATE veröffentlicht{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}NO FRONT{tuple_delimiter}ALORS ON DANSE{tuple_delimiter}Der Song ALORS ON DANSE wird im Text von NO FRONT erwähnt{tuple_delimiter}5)
+(“relationship”{tuple_delimiter}NO FRONT{tuple_delimiter}TRANCE{tuple_delimiter}Die Protagonistinnen im Song befinden sich in einer Trance, aus der sie nicht heraus wollen{tuple_delimiter}9)
+{record_delimiter}
+(“relationship”{tuple_delimiter}NO FRONT{tuple_delimiter}VIBES{tuple_delimiter}Der Song thematisiert das Bedürfnis nach bestimmten Vibes, die durch Musik erzeugt werden{tuple_delimiter}8)
+{record_delimiter}
+(“relationship”{tuple_delimiter}NO FRONT{tuple_delimiter}GLAS IN DER HAND{tuple_delimiter}Das Bild vom Glas in der Hand wird im Song genutzt, um Einsamkeit darzustellen{tuple_delimiter}7)
+{record_delimiter}
+(“relationship”{tuple_delimiter}NO FRONT{tuple_delimiter}TORKELN{tuple_delimiter}Torkeln steht im Song sinnbildlich für den emotionalen und körperlichen Kontrollverlust der Protagonistinnen{tuple_delimiter}8)
+{record_delimiter}
+(“relationship”{tuple_delimiter}NO FRONT{tuple_delimiter}TEARDROPS{tuple_delimiter}Die Teardrops im Drink symbolisieren die emotionale Belastung im Songtext{tuple_delimiter}6)
 {completion_delimiter}
 
-######################
+#############################
+
 Example 2:
-Entity_types: ORGANIZATION
-Text:
-TechGlobal's (TG) stock skyrocketed in its opening day on the Global Exchange Thursday. But IPO experts warn that the semiconductor corporation's debut on the public markets isn't indicative of how other newly listed companies may perform.
 
-TechGlobal, a formerly public company, was taken private by Vision Holdings in 2014. The well-established chip designer says it powers 85% of premium smartphones.
-######################
-Output:
-("entity"{tuple_delimiter}TECHGLOBAL{tuple_delimiter}ORGANIZATION{tuple_delimiter}TechGlobal is a stock now listed on the Global Exchange which powers 85% of premium smartphones)
+text:
+Type: Song.
+Artist: Money Boy.
+Year: 2015.
+Album: Ich kann mein Gesicht nicht fühlen.
+[Intro: Money Boy]
+Cheah, Glo Up, yeah
+
+[Bridge: Money Boy]
+Ich sag: "Hey, what's up, hello Baby willst du mit mir goen?
+Do you know, dass ich hab Dough? Bitte sei doch meine Hoe
+Ich will chill'n mit dir und mo'
+Married mit dem Money, komm ich zeig dir meinen Stove
+Zeig dir wie man whipped", jetzt macht sie Remixe vom Coke
+
+[Hook: Money Boy]
+Und ich gette high mit dem Baby
+Hitt' mit ihr die Mall und gette fly mit dem Baby, yeah
+Und ich ride mit dem Baby
+Up in meiner Kitchen, cooke Pies mit dem Baby, ah
+
+[Verse: Money Boy]
+Meine Trap Queen, (?) sie in dem Bando
+Und wir counten Money up, (?)
+Coppen nice Whips, riden beide Lambos
+Vierzig Stacks für den Brick, ja ich krieg es for the low
+Und ich find' es nice, wie sie grinded am Pole
+Ich bin so in love mit der motherfucking Hoe
+Alle sind am haten, denn die Faggots sind broke
+Ich lieb' dieses Money und krieg jeden Tag mo'
+Yeah
+[Hook: Money Boy]
+Und ich gette high mit dem Baby
+Hitt' mit ihr die Mall und gette fly mit dem Baby, yeah
+Und ich ride mit dem Baby
+Up in meiner Kitchen, cooke Pies mit dem Baby, ah
+
+[Verse: Haiyti aka. Robbery]
+Und ich steig für ihn auf Type Beats, ja, er ist mein Trap-Boy
+Und wir machen Sightseeing, ich bin so relaxed heut'
+Und wir sippen Coco, ja, er ist mein Chatboy
+Und ich hab das Loco, ja, er ist mein Bad Boy
+Yeah und ich ride im Bentley
+Und ich fühle mich so fly mit mei'm Baby, yeah
+Machen Scheine auf crazy
+Und ich brech' für ihn das Eis für den Cherry
+
+[Hook: Money Boy]
+Und ich gette high mit dem Baby
+Hitt' mit ihr die Mall und gette fly mit dem Baby, yeah
+Und ich ride mit dem Baby
+Up in meiner Kitchen, cooke Pies mit dem Baby, ah
+
+[Verse: Haiyti aka. Robbery]
+Junger Man, du bist mehr als nur ein Friend
+Nein, ich will nicht nur dein Geld
+Babyboy wir sind im Game
+Brauchen kein Miami Base
+Nein, wir trappen durch die Welt, trappen durch die Welt
+Trap Baby, Trap Baby, Trap Baby, L-er
+Yeah und ich ride im Bentley
+Und ich fühle mich so fly mit mei'm Baby, yeah
+Machen Scheine auf crazy
+Und ich brech' für ihn das Eis für den Cherry
+[Hook: Money Boy]
+Und ich gette high mit dem Baby
+Hitt' mit ihr die Mall und gette fly mit dem Baby, yeah
+Und ich ride mit dem Baby
+Up in meiner Kitchen, cooke Pies mit dem Baby, ah
+------------------------
+output:
+(“entity”{tuple_delimiter}TRAP BABY{tuple_delimiter}SONG{tuple_delimiter}Ein Song von Money Boy aus dem Jahr 2015, veröffentlicht auf dem Album Ich kann mein Gesicht nicht fühlen)
 {record_delimiter}
-("entity"{tuple_delimiter}VISION HOLDINGS{tuple_delimiter}ORGANIZATION{tuple_delimiter}Vision Holdings is a firm that previously owned TechGlobal)
+(“entity”{tuple_delimiter}MONEY BOY{tuple_delimiter}ARTIST{tuple_delimiter}Ein österreichischer Rapper, der den Song Trap Baby performt und auf dem Album Ich kann mein Gesicht nicht fühlen veröffentlicht hat)
 {record_delimiter}
-("relationship"{tuple_delimiter}TECHGLOBAL{tuple_delimiter}VISION HOLDINGS{tuple_delimiter}Vision Holdings formerly owned TechGlobal from 2014 until present{tuple_delimiter}5)
+(“entity”{tuple_delimiter}HAIYTI aka. ROBBERY{tuple_delimiter}ARTIST{tuple_delimiter}Eine Künstlerin, die einen Gastpart im Song Trap Baby performt)
+{record_delimiter}
+(“entity”{tuple_delimiter}ICH KANN MEIN GESICHT NICHT FÜHLEN{tuple_delimiter}ALBUM{tuple_delimiter}Das Album von Money Boy, auf dem der Song Trap Baby erschienen ist)
+{record_delimiter}
+(“entity”{tuple_delimiter}TRAP QUEEN{tuple_delimiter}ROLLE{tuple_delimiter}Bezeichnung für die weibliche Hauptfigur im Song, die mit dem Protagonisten Geld macht und in der Trap agiert)
+{record_delimiter}
+(“entity”{tuple_delimiter}BANDO{tuple_delimiter}ORT{tuple_delimiter}Ein verlassener Ort, der im Song als Ort des Drogenkochens oder Geldzählens verwendet wird)
+{record_delimiter}
+(“entity”{tuple_delimiter}STOVE{tuple_delimiter}OBJEKT{tuple_delimiter}Ein Herd, auf dem im Song symbolisch Drogen gekocht werden)
+{record_delimiter}
+(“entity”{tuple_delimiter}PIES{tuple_delimiter}METAPHER{tuple_delimiter}Metapher im Song für Drogenprodukte oder Gewinne, die in der Küche „gekocht“ werden)
+{record_delimiter}
+(“entity”{tuple_delimiter}MALL{tuple_delimiter}ORT{tuple_delimiter}Ort im Song, an dem sich die Figuren stylen und Zeit verbringen)
+{record_delimiter}
+(“entity”{tuple_delimiter}BENTLEY{tuple_delimiter}OBJEKT{tuple_delimiter}Ein Luxusauto, das im Song mehrfach als Statussymbol erwähnt wird)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}MONEY BOY{tuple_delimiter}Money Boy ist der Hauptkünstler des Songs Trap Baby{tuple_delimiter}9)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}HAIYTI aka. ROBBERY{tuple_delimiter}Haiyti ist als Feature-Gast auf dem Song Trap Baby vertreten{tuple_delimiter}7)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}ICH KANN MEIN GESICHT NICHT FÜHLEN{tuple_delimiter}Der Song Trap Baby ist auf dem Album Ich kann mein Gesicht nicht fühlen erschienen{tuple_delimiter}8)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}TRAP QUEEN{tuple_delimiter}Die Trap Queen ist eine zentrale Figur im Song und Partnerin des lyrischen Ichs{tuple_delimiter}7)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}BANDO{tuple_delimiter}Der Bando ist der Ort, an dem die Protagonisten operieren und Geld zählen{tuple_delimiter}6)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}STOVE{tuple_delimiter}Der Stove wird im Song als Ort des Drogenkochens präsentiert{tuple_delimiter}6)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}PIES{tuple_delimiter}Die Pies symbolisieren im Song Gewinne oder Drogenprodukte, die das Paar herstellt{tuple_delimiter}6)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}MALL{tuple_delimiter}Die Mall steht für einen Konsumort im Song, wo das Paar Zeit verbringt{tuple_delimiter}5)
+{record_delimiter}
+(“relationship”{tuple_delimiter}TRAP BABY{tuple_delimiter}BENTLEY{tuple_delimiter}Der Bentley ist ein Symbol für Luxus im Song Trap Baby{tuple_delimiter}5)
 {completion_delimiter}
 
-######################
+#############################
+
+
 Example 3:
-Entity_types: ORGANIZATION,GEO,PERSON
-Text:
-Five Aurelians jailed for 8 years in Firuzabad and widely regarded as hostages are on their way home to Aurelia.
 
-The swap orchestrated by Quintara was finalized when $8bn of Firuzi funds were transferred to financial institutions in Krohaara, the capital of Quintara.
+text:
+Type: Song.
+Year: 2016.
+Titel: Utopia  .
+Album: Intergalactica.
+Artist: LGoony.
+[Hook]
+Und ich lieg' mitten auf Utopia
+Der Himmel ist aus Gold und die Sterne aus Kristall
+Auf dem Teller ist Ambrosia
+Yeah, ich bin unsterblich, was für aufsteh'n, ich hab' Zeit
+Yeah, yeah und du weißt, Baby, wenn's dir gefällt
+Komm mit mir in eine andere Welt
+Ich bring' dich weit, weit weg in die Ferne
+Und wir komm'n nie mehr zurück auf die Erde
 
-The exchange initiated in Firuzabad's capital, Tiruzia, led to the four men and one woman, who are also Firuzi nationals, boarding a chartered flight to Krohaara.
+[Part]
+Honey, komm mit mir zur Milchstraße, Milch mit Honig (Milky Way)
+Lass dich einfach fallen, Baby und ich hol' dich (Lass dich fallen)
+Seh' die Erde, von hier oben wirkt sie mikroskopisch (So klein)
+Spür die Energie, du fühlst dich elektronisch
+Willkommen auf Utopia
+Komm, leg dich zu mir, an den Strand aus purem Sternenstaub (Skrrt, skrrt)
+Das Meer ist laut, die Luft ist warm, ich komm' hier gerne rauf
+Die Zeit vergeht hier langsamer, wir sind für immer jung (Immer jung)
+Rings um uns nur Palm'n
+Alles süß und bunt wie Kinderpunsch
 
-They were welcomed by senior Aurelian officials and are now on their way to Aurelia's capital, Cashion.
+[Hook]
+Und ich lieg' mitten auf Utopia
+Der Himmel ist aus Gold und die Sterne aus Kristall
+Auf dem Teller ist Ambrosia
+Yeah, ich bin unsterblich, was für aufsteh'n, ich hab' Zeit
+Yeah, yeah und du weißt, Baby, wenn's dir gefällt
+Komm mit mir in eine andere Welt
+Ich bring dich weit, weit weg in die Ferne
+Und wir komm'n nie mehr zurück auf die Erde
+[Bridge]
+Ich habe gemerkt (Ich habe gemerkt)
+Ich brauche nichts auf der Erde (Nichts auf der Erde)
+Ich bleibe hier auf dem Stern (Hier auf dem Stern)
+In meiner eigenen Welt (Eigenen Welt)
+Bitte weck mich nicht auf, wenn ich träum' (Nein, nein)
+Ich mein' es ernst, bitte weck mich nicht (Nein, nein)
+Keine Grenzen, ja, ich fühl' mich so frei (So frei)
+Alles, was ich brauch', fest im Blick (Skrrt)
 
-The Aurelians include 39-year-old businessman Samuel Namara, who has been held in Tiruzia's Alhamia Prison, as well as journalist Durke Bataglani, 59, and environmentalist Meggie Tazbah, 53, who also holds Bratinas nationality.
-######################
-Output:
-("entity"{tuple_delimiter}FIRUZABAD{tuple_delimiter}GEO{tuple_delimiter}Firuzabad held Aurelians as hostages)
+[Hook]
+Und ich lieg' mitten auf Utopia
+Der Himmel ist aus Gold und die Sterne aus Kristall
+Auf dem Teller ist Ambrosia
+Yeah, ich bin unsterblich, was für aufsteh'n, ich hab' Zeit
+Yeah, yeah und du weißt, Baby, wenn's dir gefällt
+Komm mit mir in eine andere Welt
+Ich bring dich weit, weit weg in die Ferne
+Und wir komm'n nie mehr zurück auf die Erde
+------------------------
+output:
+(“entity”{tuple_delimiter}UTOPIA{tuple_delimiter}SONG{tuple_delimiter}Ein Song von LGoony aus dem Jahr 2016, veröffentlicht auf dem Album Intergalactica)
 {record_delimiter}
-("entity"{tuple_delimiter}AURELIA{tuple_delimiter}GEO{tuple_delimiter}Country seeking to release hostages)
+(“entity”{tuple_delimiter}LGOONY{tuple_delimiter}ARTIST{tuple_delimiter}Ein deutscher Rapper, der den Song Utopia performt)
 {record_delimiter}
-("entity"{tuple_delimiter}QUINTARA{tuple_delimiter}GEO{tuple_delimiter}Country that negotiated a swap of money in exchange for hostages)
+(“entity”{tuple_delimiter}INTERGALACTICA{tuple_delimiter}ALBUM{tuple_delimiter}Das Album, auf dem der Song Utopia von LGoony erschienen ist)
 {record_delimiter}
+(“entity”{tuple_delimiter}UTOPIA (ORT){tuple_delimiter}FANTASIEWELT{tuple_delimiter}Ein imaginärer Ort im Song, der als paradiesische Welt fernab der Erde beschrieben wird)
 {record_delimiter}
-("entity"{tuple_delimiter}TIRUZIA{tuple_delimiter}GEO{tuple_delimiter}Capital of Firuzabad where the Aurelians were being held)
+(“entity”{tuple_delimiter}AMBROSIA{tuple_delimiter}SYMBOL{tuple_delimiter}Ein mythisches Essen der Götter, das im Song Unsterblichkeit symbolisiert)
 {record_delimiter}
-("entity"{tuple_delimiter}KROHAARA{tuple_delimiter}GEO{tuple_delimiter}Capital city in Quintara)
+(“entity”{tuple_delimiter}MILCHSTRAßE{tuple_delimiter}ORT{tuple_delimiter}Die Milchstraße wird im Song als Teil der intergalaktischen Reise erwähnt)
 {record_delimiter}
-("entity"{tuple_delimiter}CASHION{tuple_delimiter}GEO{tuple_delimiter}Capital city in Aurelia)
+(“entity”{tuple_delimiter}STERNE AUS KRISTALL{tuple_delimiter}SYMBOL{tuple_delimiter}Ein Bild für Schönheit und Fantasie, das im Song Utopia beschrieben wird)
 {record_delimiter}
-("entity"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}PERSON{tuple_delimiter}Aurelian who spent time in Tiruzia's Alhamia Prison)
+(“entity”{tuple_delimiter}HIMMEL AUS GOLD{tuple_delimiter}SYMBOL{tuple_delimiter}Ein poetisches Bild für die ideale Welt in Utopia)
 {record_delimiter}
-("entity"{tuple_delimiter}ALHAMIA PRISON{tuple_delimiter}GEO{tuple_delimiter}Prison in Tiruzia)
+(“entity”{tuple_delimiter}STERNENSTAUB{tuple_delimiter}SYMBOL{tuple_delimiter}Ein metaphorisches Element, das im Song als Strandmaterial auf Utopia beschrieben wird)
 {record_delimiter}
-("entity"{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}PERSON{tuple_delimiter}Aurelian journalist who was held hostage)
+(“entity”{tuple_delimiter}KINDERPUNSCH{tuple_delimiter}METAPHER{tuple_delimiter}Wird im Song verwendet, um die süße und bunte Atmosphäre von Utopia zu beschreiben)
 {record_delimiter}
-("entity"{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}PERSON{tuple_delimiter}Bratinas national and environmentalist who was held hostage)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}LGOONY{tuple_delimiter}LGoony ist der Künstler, der den Song Utopia performt{tuple_delimiter}9)
 {record_delimiter}
-("relationship"{tuple_delimiter}FIRUZABAD{tuple_delimiter}AURELIA{tuple_delimiter}Firuzabad negotiated a hostage exchange with Aurelia{tuple_delimiter}2)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}INTERGALACTICA{tuple_delimiter}Der Song Utopia ist auf dem Album Intergalactica erschienen{tuple_delimiter}8)
 {record_delimiter}
-("relationship"{tuple_delimiter}QUINTARA{tuple_delimiter}AURELIA{tuple_delimiter}Quintara brokered the hostage exchange between Firuzabad and Aurelia{tuple_delimiter}2)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}UTOPIA (ORT){tuple_delimiter}Der Song beschreibt eine utopische Fantasiewelt namens Utopia{tuple_delimiter}10)
 {record_delimiter}
-("relationship"{tuple_delimiter}QUINTARA{tuple_delimiter}FIRUZABAD{tuple_delimiter}Quintara brokered the hostage exchange between Firuzabad and Aurelia{tuple_delimiter}2)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}AMBROSIA{tuple_delimiter}Ambrosia steht im Song symbolisch für Unsterblichkeit in der Welt von Utopia{tuple_delimiter}7)
 {record_delimiter}
-("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}ALHAMIA PRISON{tuple_delimiter}Samuel Namara was a prisoner at Alhamia prison{tuple_delimiter}8)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}MILCHSTRAßE{tuple_delimiter}Die Milchstraße ist Teil der beschriebenen intergalaktischen Reise in Utopia{tuple_delimiter}6)
 {record_delimiter}
-("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}Samuel Namara and Meggie Tazbah were exchanged in the same hostage release{tuple_delimiter}2)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}STERNE AUS KRISTALL{tuple_delimiter}Die Sterne aus Kristall sind Teil der Beschreibung der Welt von Utopia{tuple_delimiter}7)
 {record_delimiter}
-("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}Samuel Namara and Durke Bataglani were exchanged in the same hostage release{tuple_delimiter}2)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}HIMMEL AUS GOLD{tuple_delimiter}Der Himmel aus Gold ist Teil des Bildes der perfekten Welt in Utopia{tuple_delimiter}7)
 {record_delimiter}
-("relationship"{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}Meggie Tazbah and Durke Bataglani were exchanged in the same hostage release{tuple_delimiter}2)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}STERNENSTAUB{tuple_delimiter}Sternenstaub wird als Teil der Landschaft auf Utopia dargestellt{tuple_delimiter}6)
 {record_delimiter}
-("relationship"{tuple_delimiter}SAMUEL NAMARA{tuple_delimiter}FIRUZABAD{tuple_delimiter}Samuel Namara was a hostage in Firuzabad{tuple_delimiter}2)
-{record_delimiter}
-("relationship"{tuple_delimiter}MEGGIE TAZBAH{tuple_delimiter}FIRUZABAD{tuple_delimiter}Meggie Tazbah was a hostage in Firuzabad{tuple_delimiter}2)
-{record_delimiter}
-("relationship"{tuple_delimiter}DURKE BATAGLANI{tuple_delimiter}FIRUZABAD{tuple_delimiter}Durke Bataglani was a hostage in Firuzabad{tuple_delimiter}2)
+(“relationship”{tuple_delimiter}UTOPIA{tuple_delimiter}KINDERPUNSCH{tuple_delimiter}Kinderpunsch beschreibt die Atmosphäre auf Utopia als süß und bunt{tuple_delimiter}5)
 {completion_delimiter}
 
-######################
+#############################
+
+
+
 -Real Data-
 ######################
-Entity_types: {entity_types}
-Text: {input_text}
+text: {input_text}
 ######################
-Output:
+output:

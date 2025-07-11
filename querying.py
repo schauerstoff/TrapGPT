@@ -33,7 +33,7 @@ from graphrag.query.structured_search.basic_search.basic_context import BasicSea
 LLM = "gpt-4o-mini" # gpt-4o, gpt-4o-mini, gpt-4.1
 EMBEDDING = "embedding-small" # embedding-small
 
-RESPONSE_TYPE = "Answer in German. Give a concise answer in plain text! Do not mention sources, or data reports in your answer."
+RESPONSE_TYPE = "Answer in German. Give a concise answer in plain text without formatting! Do not mention sources, or data reports in your answer."
 COMMUNITY_LEVEL = 2
 
 

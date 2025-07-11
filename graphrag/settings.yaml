@@ -13,7 +13,7 @@ models:
     api_key: ${GRAPHRAG_API_KEY} # set this in the generated .env file
     # audience: "https://cognitiveservices.azure.com/.default"
     # organization: <organization_id>
-    model: gpt-4o-mini
+    model: gpt-4o-mini # oder gpt-4o #oder gpt-4o-mini, gpt-4.1-mini
     # deployment_name: <azure_model_deployment_name>
     # encoding_model: cl100k_base # automatically set by tiktoken if left undefined
     model_supports_json: true # recommended if this is available for your model.
@@ -21,8 +21,8 @@ models:
     async_mode: threaded # or asyncio
     retry_strategy: native
     max_retries: 10
-    tokens_per_minute: auto              # set to null to disable rate limiting
-    requests_per_minute: auto            # set to null to disable rate limiting
+    tokens_per_minute: 200000              # set to null to disable rate limiting Limit 30000, Used 30000, Requested 4970.
+    requests_per_minute: 500            # set to null to disable rate limiting
   default_embedding_model:
     type: openai_embedding # or azure_openai_embedding
     # api_base: https://<instance>.openai.azure.com
@@ -39,8 +39,8 @@ models:
     async_mode: threaded # or asyncio
     retry_strategy: native
     max_retries: 10
-    tokens_per_minute: auto              # set to null to disable rate limiting
-    requests_per_minute: auto            # set to null to disable rate limiting
+    tokens_per_minute: 1000000              # set to null to disable rate limiting
+    requests_per_minute: 3000            # set to null to disable rate limiting
 
 ### Input settings ###
 
@@ -48,7 +48,7 @@ input:
   type: file # or blob
   file_type: csv # [csv, text, json]
   base_dir: "input"
-  metadata: [Type,Artist,Year,Album]
+  metadata: [Type,Year,Titel,Album,Artist]
 
 chunks:
   size: 600
